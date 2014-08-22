@@ -213,7 +213,7 @@ assuming `dotopo.lisp` is in the same directory as
 This is almost right, except for two issues, which we will now
 address.
 
-## Preventing repeated compile of main file
+## Preventing repeated compilation of main file
 
 First, one of the files that
 `do-in-topological-order`'s first argument will attempt to
