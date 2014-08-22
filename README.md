@@ -23,7 +23,9 @@ and then
 ```
 (load "coffee")
 ```
-is smart enough to pick up the faster compiled file -- which has the same
+
+CL
+is now smart enough to pick up the faster compiled file -- which has the same
 basename as the source file, but with the file extension changed from
 `.lisp` to something like `.fasl` (or `.fas`, `.dx64fsl`, or
 `.sse2f`, depending on the user's CL implementation).
@@ -125,7 +127,7 @@ Lisp files and subdirectories they are in can be identified with Lisp
 symbols without any escaping mechanism.  Thus, the file and directory
 names are lowercase and are allowed to use the same characters that a
 Lisp symbol can, provided they don't interfere with the OS's own
-convention for unadorned file naming.  (Thus, the name can't be a number
+convention for unadorned file naming.  (E.g., the name can't be a number
 even though the OS doesn't mind, and it can't contain a slash even though Lisp
 doesn't mind.)
 
@@ -294,7 +296,7 @@ That's all there is to it.
 
 To summarize:
 
-1. You include
+1. you include
 `dotopo.lisp` in your distribution alongside the main file;
 
 2. include the above changes to the content of that main file; and
