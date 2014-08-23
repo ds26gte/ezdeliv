@@ -5,6 +5,8 @@ program, which you distribute as a tarball named, say,
 `coffee.tar.bz2`, that unpacks to a directory called `coffee`.  What is
 the easiest way for them to use your program?
 
+## :coffee:
+
 If your distribution contains the single Lisp file `coffee.lisp`,
 the user can
 load it into their CL, thus:
