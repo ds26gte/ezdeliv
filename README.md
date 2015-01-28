@@ -61,12 +61,12 @@ follows:
 coffee
 ├── coffee.lisp
 ├── type
-│   ├── caf.lisp
-│   └── decaf.lisp
+│   ├── caf.lisp
+│   └── decaf.lisp
 ├── caf
-│   ├── cappuccino.lisp
-│   ├── espresso.lisp
-│   └── mocha.lisp
+│   ├── cappuccino.lisp
+│   ├── espresso.lisp
+│   └── mocha.lisp
 └── decaf
     ├── cappuccino.lisp
     └── mocha.lisp
@@ -88,8 +88,8 @@ other packages.  So you put
 at the head of `coffee.lisp`.  This should be enough, because when
 `coffee.lisp` loads other files, and these other files load still other
 files, the `load` function fluidly sets the special variable
-`⋆package⋆` to the prevailing value of `⋆package⋆`, so
-all the files will inherit `coffee` as their `⋆package⋆`.  However, for
+`*package*` to the prevailing value of `*package*`, so
+all the files will inherit `coffee` as their `*package*`.  However, for
 the purpose of documentation, or maybe even to play nice with any slimy
 text-editor setup you may have, you may still want to put
 
