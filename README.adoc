@@ -164,7 +164,7 @@ makefile-like way,
 and have a Lisp macro take care of calling `compile-file`
 on the files in the correct topological order.  For this we use the macro
 `do-in-topological-order`, defined in the file
-link:./dotopo.lisp[dotopo.lisp]:
+link:dotopo.lisp[]:
 
 ----
 (defmacro do-in-topological-order (fn &rest deps)
