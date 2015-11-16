@@ -313,3 +313,5 @@ file, either as source, or after `compile-file`-ing it. They do
 not have to worry about dealing with the other files at all, so
 long as the latter’s relative path to the main file is not
 altered.
+
+—Dorai Sitaram
