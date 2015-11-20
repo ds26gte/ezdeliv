@@ -5,7 +5,7 @@ program, which you distribute as a tarball named, say,
 `coffee.tar.bz2`, that unpacks to a directory called `coffee`.  What is
 the easiest way for them to use your program?
 
-== The scenario
+== ☕ The scenario
 
 If your distribution contains the single Lisp file `coffee.lisp`,
 the user can
@@ -158,20 +158,20 @@ and
 `caf/cappuccino.lisp`; and `decaf/mocha.lisp` and
 `decaf/cappuccino.lisp`.  And we want them compiled in the right
 order, because these files depend on each other in a certain order.
-Instead of explicitly writing the various `compile-file`’s in the
+Instead of explicitly writing the various ``compile-file``s in the
 right order, we can simply specify the dependencies in a succinct
 makefile-like way,
 and have a Lisp macro take care of calling `compile-file`
 on the files in the correct topological order.  For this we use the macro
 `do-in-topological-order`, defined in the file
-link:dotopo.lisp[]:
+link:dotopo.lisp[].
 
 `do-in-topological-order`’s first argument is a function, and its
 second argument is an expression of the dependencies among the symbols
 representing the various files.  It topologically arranges the symbols, and
 then calls the function on them, ensuring that a file is
 treated before any file depending on it.  Here’s a more maintainable way
-to add the `compile-file`’s to `coffee.lisp`,
+to add the ``compile-file``s to `coffee.lisp`,
 assuming `dotopo.lisp` is in the same directory as
 `coffee.lisp`:
 
@@ -206,7 +206,7 @@ disallowing the loop in
 (eval-when (:compile-toplevel)
   (do-in-topological-order
       (lambda (f)
-        (unless (eq f 'coffee) ;***
+        (unless (eq f 'coffee) ; <1>
           (compile-file (merge-pathnames (string-downcase (symbol-name f))
                                          *compile-file-pathname*))))
     ...))
@@ -222,7 +222,7 @@ dependency line for `coffee.lisp`. Thus:
       (lambda (f)
         (compile-file (merge-pathnames (string-downcase (symbol-name f))
                                        *compile-file-pathname*)))
-   ;(coffee type/caf type/decaf) ;***
+   ;(coffee type/caf type/decaf) ; <2>
     (type/caf caf/cappuccino caf/espresso caf/mocha)
     (type/decaf decaf/cappuccino decaf/mocha)))
 ----
@@ -238,7 +238,7 @@ compiled at all. To accommodate this, we can add a dependency line for
 
 ----
    ;(coffee type/caf type/decaf)
-    (type/water ) ;***
+    (type/water ) ; <3>
     (type/caf caf/cappuccino caf/espresso caf/mocha)
     (type/decaf decaf/cappuccino decaf/mocha)
 ----
@@ -259,7 +259,7 @@ To avoid this annoyance, make the introduction of the special
 variable in file A visible to `compile-file`, e.g.,
 
 ----
-(eval-when (:compile-toplevel :load-toplevel :execute) ;***
+(eval-when (:compile-toplevel :load-toplevel :execute) ; <4>
   (defvar *bean-type*))
 ----
 
@@ -284,10 +284,12 @@ To summarize:
 that all special variables used outside their files are made visible to
 the compiler.
 
-The user who unpacks your tarball then simply `load`’s your main
+The user who unpacks your tarball then simply ``load``s your main
 file, either as source, or after `compile-file`-ing it. They do
 not have to worry about dealing with the other files at all, so
 long as the latter’s relative path to the main file is not
 altered.
+
+❧❧❧
 
 —Dorai Sitaram
